@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
+  mode: 'jit',
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,10 +10,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+       'r-slab' :['Roboto Slab Variable', 'sans-serif'],
+       'r-mono':['Roboto Mono Variable', 'sans-serif'],
+       'r-reg': ['Roboto', 'sans-serif'],
+       'commissioner': ['Commissioner Variable', 'sans-serif'],
       },
     },
   },
