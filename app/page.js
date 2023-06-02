@@ -1,5 +1,7 @@
 "use client";
 
+import React, {useState} from 'react';
+
 import Previewer from "./components/Previewer";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
@@ -16,14 +18,16 @@ export default function App() {
 }
 
 function Home() {
+  const [editorContent, setEditorContent] = useState("placeholder");
+
   return (
     <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg">
       <Header />
       {/* min-w-[370px] md:min-w-[737px] md:max-w-[1440px]  
       had this included below before - but may not be needed given grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 w-auto ">
-        <Editor />
-        <Previewer />
+        <Editor editorContent={editorContent} setEditorContent={setEditorContent}/>
+        <Previewer editorContent={editorContent}/>
       </div>
     </main>
   );

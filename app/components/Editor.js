@@ -1,13 +1,21 @@
-export default function Editor() {
+import React, { useState } from "react";
+
+export default function Editor({editorContent, setEditorContent}) {
+ 
+  const handleChange = (event) => {
+    setEditorContent(event.target.value);
+  };
+
   return (
     <div className="w-full min-h-screen">
       <div className="flex items-center font-r-reg font-medium h-[42px] bg-[#1D1F22] p-4 text-sm tracking-[2px]">
         MARKDOWN
       </div>
       <textarea
-        className="w-full h-full resize-none bg-[#151619] focus:outline-none p-4"
-        defaultValue="placeholder"
+        className="font-r-mono font-normal text-sm -tracking-normal w-full h-full resize-none bg-[#151619] focus:outline-none p-4"
+        value={editorContent}
+        onChange={handleChange}
       ></textarea>
     </div>
   );
-}
+};
