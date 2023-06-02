@@ -18,7 +18,7 @@ export default function App() {
 }
 
 function Home() {
-  const [editorContent, setEditorContent] = useState("placeholder");
+  const [editorContent, setEditorContent] = useState("Loading...");
 
   return (
     <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg">

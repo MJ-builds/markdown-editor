@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Editor({editorContent, setEditorContent}) {
  
   const handleChange = (event) => {
     setEditorContent(event.target.value);
   };
+  useEffect(() => {
+    //placeholder for now - to be retrieved from the db initially.
+    fetch('/path-to-your-file.txt')
+      .then(response => response.text())
+      .then(data => {
+        setEditorContent(data);
+      });
+  }, []);
 
   return (
     <div className="w-full min-h-screen">
