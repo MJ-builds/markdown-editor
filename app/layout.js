@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'In-browser Markdown Editor',
-  description: 'In-browser Markdown Editor - created by MJ-builds',
+  title: 'In-Browser Markdown Editor',
+  description: 'In-Browser Markdown Editor - created by MJ-builds',
 }
 
 export default function RootLayout({ children }) {
