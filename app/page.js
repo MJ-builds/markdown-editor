@@ -25,7 +25,7 @@ function Home() {
   return (
     //this div currently causes the preview only screen to be out of whack. Remove and it works.
     <div className="flex">
-      {/* {menuToggle && <Menu />} */}
+      {menuToggle && <Menu />}
 
       <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg">
         <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
