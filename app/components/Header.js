@@ -4,13 +4,15 @@ export default function Header() {
       <div className="h-full ">
         <button className="bg-[#35393F] hover:bg-[#E46643] w-[72px] h-full flex items-center justify-center">
           <svg width="30" height="18" xmlns="http://www.w3.org/2000/svg">
-            <g fill="#FFF" fill-rule="evenodd">
+            <g fill="#FFF" fillRule="evenodd">
               <path d="M0 0h30v2H0zM0 8h30v2H0zM0 16h30v2H0z" />
             </g>
           </svg>
         </button>
       </div>
-      <div className="font-bold text-white tracking-[5px] font-commissioner">MARKDOWN</div>
+      <div className="font-bold text-white tracking-[5px] font-commissioner">
+        MARKDOWN
+      </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
         <div className="flex flex-row items-center">
@@ -23,19 +25,23 @@ export default function Header() {
             </svg>
           </div>
           <div>
-            <div className="text-[#C1C4CB] text-sm font-r-reg font-light ">Document Name</div>
+            <div className="text-[#C1C4CB] text-sm font-r-reg font-light ">
+              Document Name
+            </div>
             {/* this is where the actual file name goes. below: */}
             <div className=" text-white">welcome.md</div>
           </div>
         </div>
         <div className="flex flex-row items-center">
           <div className="pr-6">
-            <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z"
-                fill="#7C8187"
-              />
-            </svg>
+            <button className="text-[#7C8187] hover:text-[#E46643]">
+              <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
 
           <button className="flex flex-row items-center justify-center h-[40px] w-[152px] gap-2 p-2 mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-md">
