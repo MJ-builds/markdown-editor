@@ -10,10 +10,6 @@ export default function Previewer({
     setPreviewToggle(!previewToggle);
   };
 
-  useEffect(() => {
-    console.log("Preview Toggle: " + previewToggle);
-  }, [previewToggle]);
-
   return (
     <div>
       <div
@@ -53,7 +49,7 @@ export default function Previewer({
           {editorContent}
         </ReactMarkdown>
       ) : (
-        <div className="flex justify-center bg-[#151619]">
+        <div className="flex justify-center bg-[#151619] min-h-screen">
           <div className="w-[700px]">
             <ReactMarkdown className="markdown font-r-slab bg-[#151619] p-4 w-full h-full resize-none focus:outline-none">
               {/* <Editor /> */}

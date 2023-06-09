@@ -12,6 +12,7 @@ datasource db {
 
 model Document {
   id        String   @id @default(cuid())
+  userId    String
   name      String
   content   String
   createdAt DateTime @default(now())

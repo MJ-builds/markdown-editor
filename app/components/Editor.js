@@ -13,7 +13,7 @@ export default function Editor({editorContent, setEditorContent}) {
       .then(data => {
         setEditorContent(data);
       });
-  }, []);
+  },[]);
 
   return (
     <div className="w-full min-h-screen">

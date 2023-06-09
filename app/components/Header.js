@@ -5,10 +5,6 @@ export default function Header({ menuToggle, setMenuToggle }) {
     setMenuToggle(!menuToggle);
   };
 
-  useEffect(() => {
-    console.log("Menu Toggle: " + menuToggle);
-  }, [menuToggle]);
-
   return (
     <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4 ">
       <div className="h-full ">
