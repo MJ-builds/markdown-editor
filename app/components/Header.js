@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 
 
 export default function Header({ title, setTitle, menuToggle, setMenuToggle, editorContent }) {
+  
   const handleChange = () => {
     setMenuToggle(!menuToggle);
   };

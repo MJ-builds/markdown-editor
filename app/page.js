@@ -23,10 +23,11 @@ function Home() {
   const [editorContent, setEditorContent] = useState("Loading...");
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
+
   return (
     //this div currently causes the preview only screen to be out of whack. Remove and it works.
     <div className={` ${menuToggle ? "flex" : ""}`}>
-      {menuToggle && <Menu setEditorContent={setEditorContent} />}
+      {menuToggle && <Menu setEditorContent={setEditorContent} setTitle={setTitle}/>}
 
       <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full">
         <Header title={title} setTitle={setTitle} menuToggle={menuToggle} setMenuToggle={setMenuToggle} editorContent={editorContent} />
