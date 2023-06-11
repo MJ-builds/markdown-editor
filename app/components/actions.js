@@ -3,6 +3,12 @@
 import prisma from "../lib/prisma";
 // import { redirect } from "next/navigation";
 
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 export async function listDocuments() {
   const documents = await prisma.document.findMany();
   return documents;
@@ -10,6 +16,8 @@ export async function listDocuments() {
 
 export async function saveOrUpdateDocument(id, title, content) {
   let document;
+  const sanitizedTitle = DOMPurify.sanitize(title)
+  const sanitizedContent = DOMPurify.sanitize(content)
 
   if (!title || title.trim() === '' || !content || content.trim() === '') {
     throw new Error('Title and/or content cannot be empty');
@@ -22,15 +30,15 @@ export async function saveOrUpdateDocument(id, title, content) {
         id: id,
       },
       data: {
-        title: title,
-        content: content,
+        title: sanitizedTitle,
+        content: sanitizedContent,
       },
     });
   } else {
     document = await prisma.document.create({
       data: {
-        title: title,
-        content: content,
+        title: sanitizedTitle,
+        content: sanitizedContent,
       },
     });
   }

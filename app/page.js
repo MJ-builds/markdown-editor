@@ -21,7 +21,7 @@ export default function App() {
 function Home() {
   // document variables - to make more intuitive / rename
   const [documentId, setDocumentId] = useState(null);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Markdown Starter");
   const [editorContent, setEditorContent] = useState("Loading...");
   const [documents, setDocuments] = useState([]);
 

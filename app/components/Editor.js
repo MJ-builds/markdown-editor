@@ -7,7 +7,6 @@ export default function Editor({editorContent, setEditorContent}) {
   };
   useEffect(() => {
     // placeholder for now - to be retrieved from the db initially.
-    // could change to retrieve from data.json but looking more full-stack than that...
     fetch('/path-to-your-file.txt')
       .then(response => response.text())
       .then(data => {
