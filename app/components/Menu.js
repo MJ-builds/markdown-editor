@@ -1,5 +1,5 @@
 import Lister from "./Lister";
-import { listDocuments } from "./actions";
+import { listDocuments } from "../lib/actions";
 
 import { useEffect, useState } from "react";
 

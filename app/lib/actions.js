@@ -1,19 +1,20 @@
 "use server";
 
-import prisma from "../lib/prisma";
-// import { redirect } from "next/navigation";
+import prisma from "./prisma";
 
+// Sanitize the title and content before saving to the database (to avoid XSS attacks)
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 
+// List all documents in the database (for the sidebar)
 export async function listDocuments() {
   const documents = await prisma.document.findMany();
   return documents;
 }
-
+// Create a new document in the database (or update an existing one), depending on whether an id is provided 
 export async function saveOrUpdateDocument(id, title, content) {
   let document;
   const sanitizedTitle = DOMPurify.sanitize(title)
@@ -44,6 +45,7 @@ export async function saveOrUpdateDocument(id, title, content) {
   }
 }
 
+// Delete a document from the database
 export async function deleteDocument(id) {
 
   await prisma.document.delete({

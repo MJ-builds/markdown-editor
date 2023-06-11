@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { listDocuments, saveOrUpdateDocument, deleteDocument } from "./actions";
+import { listDocuments, saveOrUpdateDocument, deleteDocument } from "../lib/actions";
 
 export default function Header({
   title,
