@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 
-import { saveDocument } from "./actions";
+import { saveOrUpdateDocument, deleteDocument } from "./actions";
 import { revalidatePath } from "next/cache";
 
 
-export default function Header({ title, setTitle, menuToggle, setMenuToggle, editorContent }) {
+export default function Header({ title, setTitle, menuToggle, setMenuToggle, editorContent, documentId }) {
   
   const handleChange = () => {
     setMenuToggle(!menuToggle);
   };
 
   async function handleSave() {
-    await saveDocument(title, editorContent)
+    await saveOrUpdateDocument(documentId, title, editorContent)
     // not needed below but here for now
         .then(() => console.log('Document saved!'))
         .catch(error => console.error('Error saving document:', error));
 
-        // revalidatePath();
 }
 
   return (
@@ -72,7 +71,10 @@ export default function Header({ title, setTitle, menuToggle, setMenuToggle, edi
         </div>
         <div className="flex flex-row items-center">
           <div className="pr-6">
-            <button className="text-[#7C8187] hover:text-[#E46643]">
+            <button 
+            className="text-[#7C8187] hover:text-[#E46643]"
+            onClick={() => deleteDocument(documentId)}
+            >
               <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z"

@@ -7,6 +7,7 @@ export default function Lister({
   onDocumentClick,
   setTitle,
   setEditorContent,
+  setDocumentId,
 }) {
   const [documents, setDocuments] = useState([]);
 
@@ -47,6 +48,7 @@ export default function Lister({
                 onClick={() => {
                   setTitle(document.title);
                   setEditorContent(document.content);
+                  setDocumentId(document.id);
                 }}
               >
                 {document.title}
