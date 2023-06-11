@@ -34,7 +34,7 @@ export default function Lister({ onDocumentClick }) {
               <div className="font-normal font-r-reg text-[0.9375em] hover:text-[#E46643] hover:cursor-pointer"
               onClick={() => onDocumentClick(document.content)}
               >
-               {document.name}
+               {document.title}
               </div>
             </div>
           </div>
@@ -42,33 +42,3 @@ export default function Lister({ onDocumentClick }) {
     </div>
   );
 }
-
-// "use server"
-
-// import { PrismaClient } from '@prisma/client'
-
-// const prisma = new PrismaClient()
-// // use `prisma` in your application to read and write data in your DB
-
-// // async function list () {
-// // const documents = await prisma.document.findMany()
-// // return documents;
-// // }
-
-// export default async function Lister() {
-//    const documents = await prisma.document.findMany();
-
-//     // if (!documents) {
-//     //      return <div>None</div>
-//     // }
-
-//   return (
-//     <div>
-//         <ul>
-//       {documents.map(document =>
-//         <li key={document.id}>{document.content}{document.id}</li>
-//       )}
-//       </ul>
-//     </div>
-//   );
-// }

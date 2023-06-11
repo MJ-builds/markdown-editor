@@ -12,8 +12,8 @@ datasource db {
 
 model Document {
   id        String   @id @default(cuid())
-  userId    String
-  name      String
+  userId    String?
+  title     String
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

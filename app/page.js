@@ -19,6 +19,7 @@ export default function App() {
 }
 
 function Home() {
+  const [title, setTitle] = useState("");
   const [editorContent, setEditorContent] = useState("Loading...");
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
@@ -28,10 +29,12 @@ function Home() {
       {menuToggle && <Menu setEditorContent={setEditorContent} />}
 
       <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full">
-        <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
+        <Header title={title} setTitle={setTitle} menuToggle={menuToggle} setMenuToggle={setMenuToggle} editorContent={editorContent} />
 
         {/* min-w-[370px] md:min-w-[737px] md:max-w-[1440px]  
       had this included below before - but may not be needed given grid */}
+
+      { /* Always render Editor, but hide it when previewToggle is false */ }
         <div
           className={`grid grid-cols-1 md:grid-cols-2 w-auto ${
             previewToggle ? "" : "hidden"
@@ -47,6 +50,7 @@ function Home() {
             setPreviewToggle={setPreviewToggle}
           />
         </div>
+        { /* Always render Previewer, but hide it when previewToggle is true */ }
         <div
           className={`grid grid-cols-1 w-auto ${previewToggle ? "hidden" : ""}`}
         >

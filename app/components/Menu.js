@@ -3,7 +3,7 @@ import Lister from "./Lister";
 export default function Menu({setEditorContent}) {
 
   return (
-    <div className="flex flex-col items-center h-screen w-[20%] bg-[#1D1F22]">
+    <div className="flex flex-col items-center w-[20%] bg-[#1D1F22]">
       <div className="flex flex-col justify-center w-full p-4 gap-4">
         <div className="flex font-r-reg font-medium text-sm text-[#7C8187] tracking-[2px] pt-3">
           MY DOCUMENTS
@@ -12,7 +12,7 @@ export default function Menu({setEditorContent}) {
           <div className="text-sm">+ New Document </div>
         </button>
         {/* call from the db - todo: change name of component. */}
-        <div className="flex flex-row ">
+        <div className="flex flex-row h-full">
           {/* passing a function from Menu to Lister that will be called with the document's 
           content when the document name is clicked. Then, in Menu, you can call setEditorContent 
           with the document's content that was passed to the function. */}
