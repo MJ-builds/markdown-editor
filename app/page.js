@@ -23,6 +23,7 @@ function Home() {
   const [documentId, setDocumentId] = useState(null);
   const [title, setTitle] = useState("");
   const [editorContent, setEditorContent] = useState("Loading...");
+  const [documents, setDocuments] = useState([]);
 
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
@@ -35,6 +36,8 @@ function Home() {
           setEditorContent={setEditorContent}
           setTitle={setTitle}
           setDocumentId={setDocumentId}
+          documents={documents}
+          setDocuments={setDocuments}
         />
       )}
 
@@ -46,6 +49,8 @@ function Home() {
           setMenuToggle={setMenuToggle}
           editorContent={editorContent}
           documentId={documentId}
+          documents={documents}
+          setDocuments={setDocuments}
         />
 
         {/* min-w-[370px] md:min-w-[737px] md:max-w-[1440px]  

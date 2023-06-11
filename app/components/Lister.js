@@ -1,24 +1,10 @@
-// Lister.jsx
-
-import { listDocuments } from "./actions";
-import { useEffect, useState } from "react";
 
 export default function Lister({
-  onDocumentClick,
   setTitle,
   setEditorContent,
   setDocumentId,
+  documents,
 }) {
-  const [documents, setDocuments] = useState([]);
-
-  useEffect(() => {
-    const fetchDocuments = async () => {
-      const docs = await listDocuments();
-      setDocuments(docs);
-    };
-
-    fetchDocuments();
-  }, []);
 
   return (
     <div>

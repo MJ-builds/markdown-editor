@@ -1,22 +1,40 @@
 import React, { useEffect } from "react";
 
-import { saveOrUpdateDocument, deleteDocument } from "./actions";
-import { revalidatePath } from "next/cache";
+import { listDocuments, saveOrUpdateDocument, deleteDocument } from "./actions";
 
-
-export default function Header({ title, setTitle, menuToggle, setMenuToggle, editorContent, documentId }) {
-  
+export default function Header({
+  title,
+  setTitle,
+  menuToggle,
+  setMenuToggle,
+  editorContent,
+  documentId,
+  setDocuments,
+}) {
   const handleChange = () => {
     setMenuToggle(!menuToggle);
   };
 
   async function handleSave() {
     await saveOrUpdateDocument(documentId, title, editorContent)
-    // not needed below but here for now
-        .then(() => console.log('Document saved!'))
-        .catch(error => console.error('Error saving document:', error));
+      // not needed below but here for now
+      .then(async () => {
+        console.log("Document saved!")
+        const docs = await listDocuments();
+        setDocuments(docs);
+      })
+      .catch((error) => console.error("Error saving document:", error));
+  }
 
-}
+  async function handleDelete() {
+    await deleteDocument(documentId)
+      .then(async () => {
+        console.log("Document deleted!")
+        const docs = await listDocuments();
+        setDocuments(docs);
+      })
+      .catch((error) => console.error("Error deleting document:", error));
+  }
 
   return (
     <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4 ">
@@ -62,18 +80,18 @@ export default function Header({ title, setTitle, menuToggle, setMenuToggle, edi
               Document Name
             </div>
             {/* this is where the actual file name goes. below: */}
-            <input 
-            className=" text-white outline-none grow bg-transparent" 
-            value={title}
-            onChange={event => setTitle(event.target.value)}
+            <input
+              className=" text-white outline-none grow bg-transparent"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
             />
           </div>
         </div>
         <div className="flex flex-row items-center">
           <div className="pr-6">
-            <button 
-            className="text-[#7C8187] hover:text-[#E46643]"
-            onClick={() => deleteDocument(documentId)}
+            <button
+              className="text-[#7C8187] hover:text-[#E46643]"
+              onClick={handleDelete}
             >
               <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -84,9 +102,9 @@ export default function Header({ title, setTitle, menuToggle, setMenuToggle, edi
             </button>
           </div>
 
-          <button 
-          className="flex flex-row items-center justify-center h-[40px] w-[152px] gap-2 p-2 mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
-          onClick={handleSave}
+          <button
+            className="flex flex-row items-center justify-center h-[40px] w-[152px] gap-2 p-2 mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+            onClick={handleSave}
           >
             <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg">
               <path

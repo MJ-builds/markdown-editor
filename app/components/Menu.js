@@ -1,6 +1,20 @@
 import Lister from "./Lister";
+import { listDocuments } from "./actions";
 
-export default function Menu({ setEditorContent, setTitle, setDocumentId }) {
+import { useEffect, useState } from "react";
+
+
+export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments }) {
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      const docs = await listDocuments();
+      setDocuments(docs);
+    };
+
+    fetchDocuments();
+  }, []);
+
   return (
     <div className="flex flex-col items-center w-[20%] bg-[#1D1F22]">
       <div className="flex flex-col justify-center w-full p-4 gap-4">
@@ -26,6 +40,9 @@ export default function Menu({ setEditorContent, setTitle, setDocumentId }) {
             setEditorContent={setEditorContent}
             setTitle={setTitle}
             setDocumentId={setDocumentId}
+            documents={documents}
+            // unsure if needed as yet:
+            setDocuments={setDocuments}
           />
         </div>
       </div>

@@ -11,6 +11,10 @@ export async function listDocuments() {
 export async function saveOrUpdateDocument(id, title, content) {
   let document;
 
+  if (!title || title.trim() === '' || !content || content.trim() === '') {
+    throw new Error('Title and/or content cannot be empty');
+  }
+
   if (id) {
     // If an id is provided, update the existing document
     document = await prisma.document.update({
