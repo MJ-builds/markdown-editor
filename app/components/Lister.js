@@ -9,7 +9,10 @@ export default function Lister({
   return (
     <div>
       {documents &&
-        documents.map((document) => (
+      // thought i'd create a new array to sort, so that it does not interfere with the original array.
+      [...documents]
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .map((document) => (
           <div
             key={document.id}
             className="flex flex-row pt-3 items-center gap-4"
