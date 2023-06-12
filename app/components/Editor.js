@@ -16,11 +16,11 @@ export default function Editor({editorContent, setEditorContent}) {
 
   return (
     <div className="w-full min-h-screen">
-      <div className="flex items-center font-r-reg font-medium h-[42px] bg-[#1D1F22] p-4 text-sm tracking-[2px]">
+      <div className="flex items-center font-r-reg font-medium h-[42px] text-[#7C8187] dark:text-[#C1C4CB] dark:bg-[#1D1F22] bg-[#F5F5F5] p-4 text-sm tracking-[2px]">
         MARKDOWN
       </div>
       <textarea
-        className="font-r-mono font-normal text-sm -tracking-normal w-full h-full resize-none bg-[#151619] focus:outline-none p-4"
+        className="font-r-mono font-normal text-sm text-[#35393F] dark:text-[#C1C4CB] -tracking-normal w-full h-full resize-none dark:bg-[#151619] bg-white focus:outline-none p-4"
         value={editorContent}
         onChange={handleChange}
       ></textarea>

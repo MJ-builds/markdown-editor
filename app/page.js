@@ -31,10 +31,10 @@ function Home() {
 
   // to be moved most likely.
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
+    if (theme === "dark") {
       setTheme("light");
+    } else {
+      setTheme("dark");
     }
   };
   useEffect(() => {
@@ -42,6 +42,11 @@ function Home() {
     return () => {
       document.documentElement.classList.remove(theme);
     };
+  }, [theme]);
+
+  // to be removed after testing.
+  useEffect(() => {
+    console.log("Theme is now " + theme);  
   }, [theme]);
 
   return (
@@ -98,6 +103,7 @@ function Home() {
             editorContent={editorContent}
             previewToggle={previewToggle}
             setPreviewToggle={setPreviewToggle}
+            theme={theme}
           />
         </div>
       </main>

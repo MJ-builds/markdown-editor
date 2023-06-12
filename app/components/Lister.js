@@ -22,7 +22,6 @@ export default function Lister({
             </svg>
             <div className="flex flex-col">
               <div className="font-normal font-r-reg text-[0.8125em] text-[#7C8187]">
-                {/* db createdAt to replace the below? */}
                 {document.createdAt.getDate()}{" "}
                 {document.createdAt.toLocaleString("default", {
                   month: "long",
