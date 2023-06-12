@@ -20,12 +20,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* interim fix for menu h-full/h-screen/theme icon */
+  background-color: #1D1F22;
 }
 .markdown {
   color: #c1c4cb;

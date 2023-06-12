@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Previewer from "./components/Previewer";
 import Editor from "./components/Editor";
@@ -27,6 +27,22 @@ function Home() {
 
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  // to be moved most likely.
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+  useEffect(() => {
+    document.documentElement.classList.add(theme);
+    return () => {
+      document.documentElement.classList.remove(theme);
+    };
+  }, [theme]);
 
   return (
     //this div currently causes the preview only screen to be out of whack. Remove and it works.
@@ -38,10 +54,12 @@ function Home() {
           setDocumentId={setDocumentId}
           documents={documents}
           setDocuments={setDocuments}
+          theme={theme}
+          toggleTheme={toggleTheme}
         />
       )}
 
-      <main className="text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full">
+      <main className={`${theme} text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full`}>
         <Header
           title={title}
           setTitle={setTitle}

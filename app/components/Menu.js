@@ -1,10 +1,14 @@
-import Lister from "./Lister";
+
 import { listDocuments } from "../lib/actions";
 
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+
+import Lister from "./Lister";
+import ThemeToggle from "./ThemeToggle";
 
 
-export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments }) {
+export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments, theme,
+  toggleTheme }) {
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -16,7 +20,7 @@ export default function Menu({ setEditorContent, setTitle, setDocumentId, docume
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-[20%] bg-[#1D1F22]">
+    <div className="flex flex-col items-start justify-between w-[20%] bg-[#1D1F22] h-screen">
       <div className="flex flex-col justify-center w-full p-4 gap-4">
         <div className="flex font-r-reg font-medium text-sm text-0[#7C8187] tracking-[2px] pt-3">
           MY DOCUMENTS
@@ -46,6 +50,9 @@ export default function Menu({ setEditorContent, setTitle, setDocumentId, docume
           />
         </div>
       </div>
+      <ThemeToggle 
+        theme={theme}
+        toggleTheme={toggleTheme}/>
     </div>
   );
 }

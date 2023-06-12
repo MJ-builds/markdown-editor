@@ -66,7 +66,7 @@ export default function Header({
       </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center w-full">
           <div className=" pr-4">
             <svg width="14" height="16" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -75,13 +75,13 @@ export default function Header({
               />
             </svg>
           </div>
-          <div>
+          <div className="w-full">
             <div className="text-[#C1C4CB] text-sm font-r-reg font-light ">
               Document Name
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-white outline-none grow bg-transparent"
+              className=" text-white outline-none grow bg-transparent w-full"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
