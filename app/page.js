@@ -71,6 +71,7 @@ function Home() {
           menuToggle={menuToggle}
           setMenuToggle={setMenuToggle}
           editorContent={editorContent}
+          setEditorContent={setEditorContent}
           documentId={documentId}
           documents={documents}
           setDocuments={setDocuments}

@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
-import { listDocuments, saveOrUpdateDocument, deleteDocument } from "../lib/actions";
+import {
+  listDocuments,
+  saveOrUpdateDocument,
+  deleteDocument,
+} from "../lib/actions";
 
 export default function Header({
   title,
@@ -8,6 +12,7 @@ export default function Header({
   menuToggle,
   setMenuToggle,
   editorContent,
+  setEditorContent,
   documentId,
   setDocuments,
 }) {
@@ -19,7 +24,7 @@ export default function Header({
     await saveOrUpdateDocument(documentId, title, editorContent)
       // not needed below but here for now
       .then(async () => {
-        console.log("Document saved!")
+        console.log("Document saved!");
         const docs = await listDocuments();
         setDocuments(docs);
       })
@@ -29,9 +34,11 @@ export default function Header({
   async function handleDelete() {
     await deleteDocument(documentId)
       .then(async () => {
-        console.log("Document deleted!")
+        console.log("Document deleted!");
         const docs = await listDocuments();
         setDocuments(docs);
+        setTitle("");
+        setEditorContent("");
       })
       .catch((error) => console.error("Error deleting document:", error));
   }
@@ -61,8 +68,8 @@ export default function Header({
           )}
         </button>
       </div>
-      <div className="font-bold text-white tracking-[5px] font-commissioner">
-        MARKDOWN
+      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner">
+        MICKDOWN<div className="text-[#E46643]">.COM</div>
       </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
@@ -90,8 +97,8 @@ export default function Header({
         <div className="flex flex-row items-center">
           <div className="pr-6">
             <button
-              className="text-[#7C8187] hover:text-[#E46643]"
-              onClick={handleDelete}
+              className="text-[#7C8187] hover:text-[#E46643] flex justify-self-center"
+              onClick={() => documentId && openDeleteModal.showModal()}
             >
               <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -101,7 +108,37 @@ export default function Header({
               </svg>
             </button>
           </div>
-
+          {/* TODO: STYLING AND IMPROVEMENTS */}
+          <dialog
+            id="openDeleteModal"
+            className="dark:bg-[#1D1F22] bg-white w-[25%] h-fit p-5 font-r-slab rounded-[4px]"
+          >
+            <h3 className="text-[#35393F] dark:text-white text-2xl font-bold pb-3">
+              Delete this document?
+            </h3>
+            <div className="text-[#7C8187] dark:text-[#C1C4CB] text-sm">{`Are you sure you want to delete '${title}' and it's contents?`}</div>
+            <div className="text-[#7C8187] dark:text-[#C1C4CB] text-sm pt-3 font-bold">
+              This action cannot be reversed
+            </div>
+            <form method="dialog">
+              <div className="flex flex-row pt-4 gap-4">
+                <button
+                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+                  type="submit"
+                  onClick={handleDelete}
+                >
+                  Confirm Delete
+                </button>
+                <button
+                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+                  type="submit"
+                  onClick={() => openDeleteModal.close()}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </dialog>
           <button
             className="flex flex-row items-center justify-center h-[40px] w-[152px] gap-2 p-2 mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
             onClick={handleSave}
