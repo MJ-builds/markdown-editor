@@ -1,12 +1,16 @@
-
 import { listDocuments } from "../lib/actions";
 
-import { useEffect} from "react";
+import { useEffect } from "react";
 
 import Lister from "./Lister";
 
-export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments }) {
-
+export default function Menu({
+  setEditorContent,
+  setTitle,
+  setDocumentId,
+  documents,
+  setDocuments,
+}) {
   useEffect(() => {
     const fetchDocuments = async () => {
       const docs = await listDocuments();

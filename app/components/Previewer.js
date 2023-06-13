@@ -4,7 +4,7 @@ export default function Previewer({
   editorContent,
   previewToggle,
   setPreviewToggle,
-  theme
+  theme,
 }) {
   const handleChange = () => {
     setPreviewToggle(!previewToggle);
@@ -44,14 +44,18 @@ export default function Previewer({
       </div>
       {/* // editor content to be placed below  */}
       {previewToggle ? (
-        <ReactMarkdown className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white border-l-[1px] border-[#5A6069] p-4 w-full h-full resize-none focus:outline-none`}>
+        <ReactMarkdown
+          className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white border-l-[1px] border-[#5A6069] p-4 w-full h-full resize-none focus:outline-none`}
+        >
           {/* <Editor /> */}
           {editorContent}
         </ReactMarkdown>
       ) : (
         <div className="flex justify-center dark:bg-[#151619] bg-white min-h-screen">
           <div className="w-[700px]">
-            <ReactMarkdown className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white p-4 w-full h-full resize-none focus:outline-none`}>
+            <ReactMarkdown
+              className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white p-4 w-full h-full resize-none focus:outline-none`}
+            >
               {/* <Editor /> */}
               {editorContent}
             </ReactMarkdown>

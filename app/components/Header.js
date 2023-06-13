@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
+
 import {
   listDocuments,
   saveOrUpdateDocument,
@@ -21,6 +23,9 @@ export default function Header({
   theme,
   toggleTheme,
 }) {
+  const user = useUser();
+  console.log(user);
+
   const handleChange = () => {
     setMenuToggle(!menuToggle);
   };
@@ -50,12 +55,13 @@ export default function Header({
         setDocuments(docs);
         setTitle("");
         setEditorContent("");
+        setDocumentId(null);
       })
       .catch((error) => console.error("Error deleting document:", error));
   }
 
   return (
-    <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4 ">
+    <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4">
       <div className="h-full ">
         <button
           className="bg-[#35393F] hover:bg-[#E46643] w-[72px] h-full flex items-center justify-center"
@@ -107,10 +113,6 @@ export default function Header({
         </div>
         <div className="flex flex-row items-center">
           <div className="pr-6 flex items-center gap-4">
-            <div className="flex justify-center items-center">
-              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-            </div>
-            <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
             <button
               className="text-[#7C8187] hover:text-[#E46643] flex justify-self-center"
               onClick={() => documentId && openDeleteModal.showModal()}
@@ -154,7 +156,7 @@ export default function Header({
             </form>
           </dialog>
           <button
-            className="flex flex-row items-center justify-center h-[40px] w-[152px] gap-2 p-2 mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+            className="flex flex-row items-center min-w-[150px] justify-center h-[40px] gap-2 p-2 mr-6 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
             onClick={handleSave}
           >
             <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg">
@@ -165,6 +167,31 @@ export default function Header({
             </svg>
             <div className="text-sm">Save Changes</div>
           </button>
+          <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
+          <div className="flex justify-center items-center pr-4 pl-4">
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          </div>
+          <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
+          <div className="px-6 w-full">
+            {!user.isSignedIn ? (
+              <SignInButton>
+                <button className="flex items-center justify-center h-[40px] w-[152px] text-[#151619] hover:text-black bg-[#E46643] hover:bg-[#F39765] border-[1px] border-black rounded-[4px] tracking-[2px] font-commissioner font-bold">
+                  SIGN IN
+                </button>
+              </SignInButton>
+            ) : (
+              <div className="flex flex-row items-center w-fit min-w-max font-commissioner">
+                <div className="text-sm pr-4 flex font-normal items-center">
+                  Welcome,{" "}
+                  <div className="text-orange-500 pl-2 font-bold">
+                    {" "}
+                    {user.user.username}
+                  </div>
+                </div>
+                <UserButton />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
