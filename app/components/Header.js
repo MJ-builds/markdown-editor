@@ -64,7 +64,7 @@ export default function Header({
     <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4">
       <div className="h-full ">
         <button
-          className="bg-[#35393F] hover:bg-[#E46643] w-[72px] h-full flex items-center justify-center"
+          className="bg-[#35393F] hover:bg-blue-400 w-[72px] h-full flex items-center justify-center"
           value={menuToggle}
           onClick={handleChange}
         >
@@ -86,7 +86,7 @@ export default function Header({
         </button>
       </div>
       <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner">
-        MICKDOWN<div className="text-pink-600">.COM</div>
+        MICKDOWN<div className="text-blue-600">.COM</div>
       </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
@@ -105,7 +105,7 @@ export default function Header({
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-white text-sm outline-none grow bg-transparent w-full"
+              className=" text-blue-300 text-sm outline-none grow bg-transparent w-full"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
@@ -114,7 +114,7 @@ export default function Header({
         <div className="flex flex-row items-center">
           <div className="pr-6 flex items-center gap-4">
             <button
-              className="text-[#7C8187] hover:text-[#E46643] flex justify-self-center"
+              className="text-white hover:text-red-600 flex justify-self-center scale-125"
               onClick={() => documentId && openDeleteModal.showModal()}
             >
               <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -139,14 +139,14 @@ export default function Header({
             <form method="dialog">
               <div className="flex flex-row pt-4 gap-4">
                 <button
-                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 rounded-[4px] "
                   type="submit"
                   onClick={handleDelete}
                 >
                   Confirm Delete
                 </button>
                 <button
-                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+                  className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 rounded-[4px]"
                   type="submit"
                   onClick={() => openDeleteModal.close()}
                 >
@@ -156,16 +156,15 @@ export default function Header({
             </form>
           </dialog>
           <button
-            className="flex flex-row items-center min-w-[150px] justify-center h-[40px] gap-2 p-2 mr-6 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-white hover:text-green-600 scale-150"
             onClick={handleSave}
           >
             <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M15.91 5.931 10.575.598A.889.889 0 0 0 10.29.41.969.969 0 0 0 9.945.34H2.834A2.667 2.667 0 0 0 .167 3.007v10.666a2.667 2.667 0 0 0 2.667 2.667H13.5a2.667 2.667 0 0 0 2.667-2.667v-7.11a.889.889 0 0 0-.258-.632ZM5.5 2.118h3.556v1.778H5.5V2.118Zm5.334 12.444H5.5v-2.666c0-.491.398-.89.89-.89h3.555c.49 0 .889.399.889.89v2.666Zm3.555-.889c0 .491-.398.89-.889.89h-.889v-2.667a2.667 2.667 0 0 0-2.666-2.667H6.389a2.667 2.667 0 0 0-2.666 2.667v2.666h-.89a.889.889 0 0 1-.888-.889V3.007c0-.491.398-.89.889-.89h.889v2.667c0 .491.398.89.888.89h5.334c.49 0 .889-.399.889-.89V3.371l3.555 3.556v6.746Z"
-                fill="#FFF"
+                fill="currentColor"
               />
             </svg>
-            <div className="text-sm">Save Changes</div>
           </button>
           <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
           <div className="flex justify-center items-center pr-4 pl-4">
@@ -175,20 +174,22 @@ export default function Header({
           <div className="px-6 w-full">
             {!user.isSignedIn ? (
               <SignInButton>
-                <button className="flex items-center justify-center h-[40px] w-[152px] text-[#151619] hover:text-black bg-[#E46643] hover:bg-[#F39765] border-[1px] border-black rounded-[4px] tracking-[2px] font-commissioner font-bold">
-                  SIGN IN
+                <button className="flex items-center justify-center h-[40px] w-[152px] text-white bg-blue-600 hover:bg-blue-400 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
+                  SIGN-IN
                 </button>
               </SignInButton>
             ) : (
               <div className="flex flex-row items-center w-fit min-w-max font-commissioner">
                 <div className="text-sm pr-4 flex font-normal items-center">
                   Welcome,{" "}
-                  <div className="text-orange-500 pl-2 font-bold">
+                  <div className="text-blue-600 pl-2 font-bold">
                     {" "}
                     {user.user.username}
                   </div>
                 </div>
-                <UserButton />
+                <div className="scale-125">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
               </div>
             )}
           </div>

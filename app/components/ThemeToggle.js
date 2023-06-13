@@ -12,7 +12,7 @@ export default function ThemeToggle({ theme, toggleTheme }) {
   return (
     <div className="flex flex-row justify-center items-center gap-3">
       <svg
-        className="text-[#5A6069] dark:text-[#E46643]"
+        className="text-[#5A6069] dark:text-blue-600"
         width="17"
         height="16"
         xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ export default function ThemeToggle({ theme, toggleTheme }) {
         <div className="w-11 h-6 bg-[#757575] rounded-full peer peer-focus:ring-gray-500  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
       </label>
       <svg
-        className="dark:text-[#5A6069] text-[#E46643]"
+        className="dark:text-[#5A6069] text-blue-600"
         width="18"
         height="18"
         xmlns="http://www.w3.org/2000/svg"

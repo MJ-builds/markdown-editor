@@ -32,7 +32,7 @@ export default function Menu({
             setEditorContent("");
             setDocumentId(null);
           }}
-          className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-[#E46643] hover:bg-[#F39765] rounded-[4px]"
+          className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 rounded-[4px]"
         >
           <div className="text-sm">+ New Document </div>
         </button>

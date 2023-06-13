@@ -16,7 +16,7 @@ export default function Lister({
               className="flex flex-row pt-3 items-center gap-4 rounded-[4px] bg-[#2B2D31] mb-2 p-2"
             >
               <svg
-                className="text-[#E46643]"
+                className="text-blue-600"
                 width="14"
                 height="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ export default function Lister({
                 />
               </svg>
               <div className="flex flex-col">
-                <div className="font-normal font-r-reg text-[0.8125em] flex items-center text-[#7C8187]">
+                <div className="font-normal font-r-reg text-[0.8125em] flex items-center text-blue-200">
                   {document.createdAt.getDate()}{" "}
                   {document.createdAt.toLocaleString("default", {
                     month: "long",
@@ -38,7 +38,7 @@ export default function Lister({
                   </div>
                 </div>
                 <div
-                  className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-[#E46643] hover:cursor-pointer"
+                  className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-blue-600 hover:cursor-pointer"
                   onClick={() => {
                     setTitle(document.title);
                     setEditorContent(document.content);
