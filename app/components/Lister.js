@@ -7,7 +7,7 @@ export default function Lister({
 }) {
 
   return (
-    <div>
+    <div className="pt-5">
       {documents &&
       // thought i'd create a new array to sort, so that it does not interfere with the original array.
       [...documents]
@@ -15,7 +15,7 @@ export default function Lister({
       .map((document) => (
           <div
             key={document.id}
-            className="flex flex-row pt-3 items-center gap-4"
+            className="flex flex-row pt-3 items-center gap-4 rounded-[4px] bg-[#2B2D31] mb-2 p-2"
           >
             <svg width="14" height="16" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -24,15 +24,18 @@ export default function Lister({
               />
             </svg>
             <div className="flex flex-col">
-              <div className="font-normal font-r-reg text-[0.8125em] text-[#7C8187]">
+              <div className="font-normal font-r-reg text-[0.8125em] flex items-center text-[#7C8187]">
                 {document.createdAt.getDate()}{" "}
                 {document.createdAt.toLocaleString("default", {
                   month: "long",
                 })}{" "}
-                {document.createdAt.getFullYear()}
+                {document.createdAt.getFullYear()}{" "}
+                <div className="inline-flex text-[9px] pl-3">
+                 {document.createdAt.toLocaleTimeString()}
+</div>
               </div>
               <div
-                className="font-normal font-r-reg text-[0.9375em] hover:text-[#E46643] hover:cursor-pointer"
+                className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-[#E46643] hover:cursor-pointer"
                 onClick={() => {
                   setTitle(document.title);
                   setEditorContent(document.content);

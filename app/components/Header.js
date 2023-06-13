@@ -6,6 +6,8 @@ import {
   deleteDocument,
 } from "../lib/actions";
 
+import ThemeToggle from "./ThemeToggle";
+
 export default function Header({
   title,
   setTitle,
@@ -16,6 +18,8 @@ export default function Header({
   documentId,
   setDocumentId,
   setDocuments,
+  theme,
+  toggleTheme,
 }) {
   const handleChange = () => {
     setMenuToggle(!menuToggle);
@@ -23,7 +27,11 @@ export default function Header({
 
   async function handleSave() {
     try {
-      const savedDocument = await saveOrUpdateDocument(documentId, title, editorContent);
+      const savedDocument = await saveOrUpdateDocument(
+        documentId,
+        title,
+        editorContent
+      );
       // Update documentId with the id of the saved document
       setDocumentId(savedDocument.id);
       console.log("Document saved!");
@@ -33,7 +41,7 @@ export default function Header({
       console.error("Error saving document:", error);
     }
   }
-  
+
   async function handleDelete() {
     await deleteDocument(documentId)
       .then(async () => {
@@ -72,7 +80,7 @@ export default function Header({
         </button>
       </div>
       <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner">
-        MICKDOWN<div className="text-[#E46643]">.COM</div>
+        MICKDOWN<div className="text-pink-600">.COM</div>
       </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
@@ -86,19 +94,23 @@ export default function Header({
             </svg>
           </div>
           <div className="w-full">
-            <div className="text-[#C1C4CB] text-sm font-r-reg font-light ">
+            <div className="text-[#C1C4CB] text-xs font-r-reg font-light ">
               Document Name
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-white outline-none grow bg-transparent w-full"
+              className=" text-white text-sm outline-none grow bg-transparent w-full"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
           </div>
         </div>
         <div className="flex flex-row items-center">
-          <div className="pr-6">
+          <div className="pr-6 flex items-center gap-4">
+            <div className="flex justify-center items-center">
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            </div>
+            <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
             <button
               className="text-[#7C8187] hover:text-[#E46643] flex justify-self-center"
               onClick={() => documentId && openDeleteModal.showModal()}
@@ -111,7 +123,6 @@ export default function Header({
               </svg>
             </button>
           </div>
-          {/* TODO: STYLING AND IMPROVEMENTS */}
           <dialog
             id="openDeleteModal"
             className="dark:bg-[#1D1F22] bg-white w-[25%] h-fit p-5 font-r-slab rounded-[4px]"

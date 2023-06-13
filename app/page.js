@@ -59,8 +59,6 @@ function Home() {
           setDocumentId={setDocumentId}
           documents={documents}
           setDocuments={setDocuments}
-          theme={theme}
-          toggleTheme={toggleTheme}
         />
       )}
 
@@ -76,6 +74,8 @@ function Home() {
           setDocumentId={setDocumentId}
           documents={documents}
           setDocuments={setDocuments}
+          theme={theme}
+          toggleTheme={toggleTheme}
         />
 
         {/* min-w-[370px] md:min-w-[737px] md:max-w-[1440px]  

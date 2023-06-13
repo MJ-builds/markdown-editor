@@ -4,11 +4,8 @@ import { listDocuments } from "../lib/actions";
 import { useEffect} from "react";
 
 import Lister from "./Lister";
-import ThemeToggle from "./ThemeToggle";
 
-
-export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments, theme,
-  toggleTheme }) {
+export default function Menu({ setEditorContent, setTitle, setDocumentId, documents, setDocuments }) {
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -50,9 +47,6 @@ export default function Menu({ setEditorContent, setTitle, setDocumentId, docume
           />
         </div>
       </div>
-      <ThemeToggle 
-        theme={theme}
-        toggleTheme={toggleTheme}/>
     </div>
   );
 }
