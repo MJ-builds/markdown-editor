@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function ThemeToggle({ theme, toggleTheme }) {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   // handles both the toggle and the setting of theme
   const handleChange = () => {

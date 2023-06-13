@@ -27,7 +27,7 @@ function Home() {
 
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   // to be moved most likely.
   const toggleTheme = () => {
@@ -73,6 +73,7 @@ function Home() {
           editorContent={editorContent}
           setEditorContent={setEditorContent}
           documentId={documentId}
+          setDocumentId={setDocumentId}
           documents={documents}
           setDocuments={setDocuments}
         />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   listDocuments,
@@ -14,6 +14,7 @@ export default function Header({
   editorContent,
   setEditorContent,
   documentId,
+  setDocumentId,
   setDocuments,
 }) {
   const handleChange = () => {
@@ -21,16 +22,18 @@ export default function Header({
   };
 
   async function handleSave() {
-    await saveOrUpdateDocument(documentId, title, editorContent)
-      // not needed below but here for now
-      .then(async () => {
-        console.log("Document saved!");
-        const docs = await listDocuments();
-        setDocuments(docs);
-      })
-      .catch((error) => console.error("Error saving document:", error));
+    try {
+      const savedDocument = await saveOrUpdateDocument(documentId, title, editorContent);
+      // Update documentId with the id of the saved document
+      setDocumentId(savedDocument.id);
+      console.log("Document saved!");
+      const docs = await listDocuments();
+      setDocuments(docs);
+    } catch (error) {
+      console.error("Error saving document:", error);
+    }
   }
-
+  
   async function handleDelete() {
     await deleteDocument(documentId)
       .then(async () => {

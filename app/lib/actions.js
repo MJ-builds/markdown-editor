@@ -43,6 +43,8 @@ export async function saveOrUpdateDocument(id, title, content) {
       },
     });
   }
+  // returning doc as we need the id in header for the save logic (had a previous bug re new docs).
+  return document;
 }
 
 // Delete a document from the database
