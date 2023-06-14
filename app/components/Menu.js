@@ -34,7 +34,27 @@ export default function Menu({
           }}
           className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 rounded-[4px]"
         >
-          <div className="text-sm">+ New Document </div>
+          <div className="flex flex-row items-center text-sm gap-2">
+            <svg
+              className="with-icon_icon__aLCKg"
+              data-testid="geist-icon"
+              fill="none"
+              height="24"
+              shapeRendering="geometricPrecision"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M12 18v-6" />
+              <path d="M9 15h6" />
+            </svg>{" "}
+            New Document{" "}
+          </div>
         </button>
         {/* call from the db - todo: change name of component. */}
         <div className="flex flex-row h-full">

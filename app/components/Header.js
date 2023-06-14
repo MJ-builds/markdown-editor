@@ -53,9 +53,16 @@ export default function Header({
         console.log("Document deleted!");
         const docs = await listDocuments();
         setDocuments(docs);
-        setTitle("");
-        setEditorContent("");
-        setDocumentId(null);
+
+        if (docs && docs.length > 0) {
+          setTitle(docs[docs.length - 1].title);
+          setEditorContent(docs[docs.length - 1].content);
+          setDocumentId(docs[docs.length - 1].id);
+        } else {
+          setTitle("");
+          setEditorContent("");
+          setDocumentId(null);
+        }
       })
       .catch((error) => console.error("Error deleting document:", error));
   }
@@ -85,18 +92,46 @@ export default function Header({
           )}
         </button>
       </div>
-      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner">
-        MICKDOWN<div className="text-blue-600">.COM</div>
+      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
+        <div className="text-blue-300 text-4xl pr-4 pl-2 scale-150">
+          <svg
+            className="with-icon_icon__aLCKg"
+            data-testid="geist-icon"
+            fill="none"
+            height="24"
+            shapeRendering="geometricPrecision"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+          </svg>
+        </div>
+        <div>MICK</div>
+        <div className="text-blue-300">DOWN</div>
       </div>
       <div className="border-r-[1px] border-[#5A6069] h-12"></div>
       <div className="flex flex-row justify-between w-full">
         <div className="flex flex-row items-center w-full">
           <div className=" pr-4">
-            <svg width="14" height="16" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M13.107 3.393c.167.167.31.393.429.678.119.286.178.548.178.786v10.286c0 .238-.083.44-.25.607a.827.827 0 0 1-.607.25h-12a.827.827 0 0 1-.607-.25.827.827 0 0 1-.25-.607V.857C0 .62.083.417.25.25A.827.827 0 0 1 .857 0h8c.238 0 .5.06.786.179.286.119.512.261.678.428l2.786 2.786ZM9.143 1.214v3.357H12.5c-.06-.172-.125-.294-.196-.366L9.509 1.411c-.072-.072-.194-.137-.366-.197Zm3.428 13.643V5.714H8.857a.827.827 0 0 1-.607-.25.827.827 0 0 1-.25-.607V1.143H1.143v13.714H12.57Z"
-                fill="#FFF"
-              />
+            <svg
+              className="with-icon_icon__aLCKg"
+              data-testid="geist-icon"
+              fill="none"
+              height="24"
+              shapeRendering="geometricPrecision"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M7.06883 21.6H16.219C18.7973 21.6 20.8879 19.5093 20.8879 16.9312V5.86885C20.8879 3.29074 18.7973 1.20001 16.219 1.20001H7.06883C4.49072 1.20001 2.39999 3.29074 2.39999 5.86885V16.9312C2.39999 19.5093 4.49072 21.6 7.06883 21.6Z" />
+              <path d="M15.3946 15.842H7.89178M15.3946 11.245H7.89178M10.755 6.6586H7.89232" />
             </svg>
           </div>
           <div className="w-full">
@@ -105,23 +140,56 @@ export default function Header({
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-blue-300 text-sm outline-none grow bg-transparent w-full"
+              className=" text-white text-sm outline-none grow bg-transparent w-full"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
           </div>
         </div>
         <div className="flex flex-row items-center">
-          <div className="pr-6 flex items-center gap-4">
+          <button
+            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-green-600 scale-125"
+            onClick={handleSave}
+          >
+            <svg
+              className="with-icon_icon__aLCKg"
+              data-testid="geist-icon"
+              fill="none"
+              height="24"
+              shapeRendering="geometricPrecision"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+              <path d="M17 21v-8H7v8" />
+              <path d="M7 3v5h8" />
+            </svg>
+          </button>
+          <div className="pr-10 flex items-center gap-4">
             <button
-              className="text-white hover:text-red-600 flex justify-self-center scale-125"
+              className="text-[#5A6069] hover:text-red-600 flex justify-self-center scale-125"
               onClick={() => documentId && openDeleteModal.showModal()}
             >
-              <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z"
-                  fill="currentColor"
-                />
+              <svg
+                className="with-icon_icon__aLCKg"
+                data-testid="geist-icon"
+                fill="none"
+                height="24"
+                shapeRendering="geometricPrecision"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path d="M21 4H8l-7 8 7 8h13a2 2 0 002-2V6a2 2 0 00-2-2z" />
+                <path d="M18 9l-6 6" />
+                <path d="M12 9l6 6" />
               </svg>
             </button>
           </div>
@@ -155,17 +223,6 @@ export default function Header({
               </div>
             </form>
           </dialog>
-          <button
-            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-white hover:text-green-600 scale-150"
-            onClick={handleSave}
-          >
-            <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M15.91 5.931 10.575.598A.889.889 0 0 0 10.29.41.969.969 0 0 0 9.945.34H2.834A2.667 2.667 0 0 0 .167 3.007v10.666a2.667 2.667 0 0 0 2.667 2.667H13.5a2.667 2.667 0 0 0 2.667-2.667v-7.11a.889.889 0 0 0-.258-.632ZM5.5 2.118h3.556v1.778H5.5V2.118Zm5.334 12.444H5.5v-2.666c0-.491.398-.89.89-.89h3.555c.49 0 .889.399.889.89v2.666Zm3.555-.889c0 .491-.398.89-.889.89h-.889v-2.667a2.667 2.667 0 0 0-2.666-2.667H6.389a2.667 2.667 0 0 0-2.666 2.667v2.666h-.89a.889.889 0 0 1-.888-.889V3.007c0-.491.398-.89.889-.89h.889v2.667c0 .491.398.89.888.89h5.334c.49 0 .889-.399.889-.89V3.371l3.555 3.556v6.746Z"
-                fill="currentColor"
-              />
-            </svg>
-          </button>
           <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
           <div className="flex justify-center items-center pr-4 pl-4">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
@@ -182,7 +239,7 @@ export default function Header({
               <div className="flex flex-row items-center w-fit min-w-max font-commissioner">
                 <div className="text-sm pr-4 flex font-normal items-center">
                   Welcome,{" "}
-                  <div className="text-blue-600 pl-2 font-bold">
+                  <div className="text-blue-100 pl-2 font-bold">
                     {" "}
                     {user.user.username}
                   </div>
