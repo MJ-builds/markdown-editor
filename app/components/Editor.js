@@ -1,16 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function Editor({ editorContent, setEditorContent }) {
+import { listDocuments } from "../lib/actions";
+
+export default function Editor({
+  setDocuments,
+  setTitle,
+  editorContent,
+  setEditorContent,
+  setDocumentId,
+}) {
   const handleChange = (event) => {
     setEditorContent(event.target.value);
   };
+
   useEffect(() => {
-    // placeholder for now - to be retrieved from the db initially.
-    fetch("/path-to-your-file.txt")
-      .then((response) => response.text())
-      .then((data) => {
-        setEditorContent(data);
-      });
+    const fetchDocuments = async () => {
+      try {
+        const docs = await listDocuments();
+        setDocuments(docs);
+
+        if (docs && docs.length > 0) {
+          setTitle(docs[docs.length - 1].title);
+          setEditorContent(docs[docs.length - 1].content);
+          setDocumentId(docs[docs.length - 1].id);
+        } else {
+          setTitle("");
+          setEditorContent("");
+          setDocumentId(null);
+        }
+      } catch (error) {
+        console.error("Error getting documents:", error);
+      }
+    };
+
+    fetchDocuments();
   }, []);
 
   return (

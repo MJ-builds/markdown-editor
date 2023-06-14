@@ -21,7 +21,7 @@ export default function App() {
 function Home() {
   // document variables - to make more intuitive / rename
   const [documentId, setDocumentId] = useState(null);
-  const [title, setTitle] = useState("Markdown Starter");
+  const [title, setTitle] = useState("");
   const [editorContent, setEditorContent] = useState("Loading...");
   const [documents, setDocuments] = useState([]);
 
@@ -46,7 +46,7 @@ function Home() {
 
   // to be removed after testing.
   useEffect(() => {
-    console.log("Theme is now " + theme);  
+    console.log("Theme is now " + theme);
   }, [theme]);
 
   return (
@@ -62,7 +62,9 @@ function Home() {
         />
       )}
 
-      <main className={`${theme} text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full`}>
+      <main
+        className={`${theme} text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full`}
+      >
         <Header
           title={title}
           setTitle={setTitle}
@@ -90,6 +92,9 @@ function Home() {
           <Editor
             editorContent={editorContent}
             setEditorContent={setEditorContent}
+            setDocuments={setDocuments}
+            setTitle={setTitle}
+            setDocumentId={setDocumentId}
           />
           <Previewer
             editorContent={editorContent}
