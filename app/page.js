@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
 
 import Previewer from "./components/Previewer";
 import Editor from "./components/Editor";
@@ -29,6 +30,9 @@ function Home() {
   const [menuToggle, setMenuToggle] = useState(false);
   const [theme, setTheme] = useState("dark");
 
+  // may be best to move this to a user context.
+  const user = useUser();
+
   // to be moved most likely.
   const toggleTheme = () => {
     if (theme === "dark") {
@@ -44,13 +48,7 @@ function Home() {
     };
   }, [theme]);
 
-  // to be removed after testing.
-  useEffect(() => {
-    console.log("Theme is now " + theme);
-  }, [theme]);
-
   return (
-    //this div currently causes the preview only screen to be out of whack. Remove and it works.
     <div className={` ${menuToggle ? "flex" : ""}`}>
       {menuToggle && (
         <Menu
@@ -59,6 +57,7 @@ function Home() {
           setDocumentId={setDocumentId}
           documents={documents}
           setDocuments={setDocuments}
+          user={user}
         />
       )}
 
@@ -78,6 +77,7 @@ function Home() {
           setDocuments={setDocuments}
           theme={theme}
           toggleTheme={toggleTheme}
+          user={user}
         />
 
         {/* min-w-[370px] md:min-w-[737px] md:max-w-[1440px]  
@@ -95,6 +95,7 @@ function Home() {
             setDocuments={setDocuments}
             setTitle={setTitle}
             setDocumentId={setDocumentId}
+            user={user}
           />
           <Previewer
             editorContent={editorContent}

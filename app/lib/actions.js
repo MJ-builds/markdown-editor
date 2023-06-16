@@ -10,12 +10,22 @@ const window = new JSDOM("").window;
 const DOMPurify = createDOMPurify(window);
 
 // List all documents in the database (for the sidebar)
-export async function listDocuments() {
-  const documents = await prisma.document.findMany();
-  return documents;
+export async function listDocuments(userId) {
+  let documents;
+  if (userId || userId !== null) {
+    documents = await prisma.document.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    return documents;
+  } else {
+    documents = await prisma.document.findMany();
+    return documents;
+  }
 }
 // Create a new document in the database (or update an existing one), depending on whether an id is provided
-export async function saveOrUpdateDocument(id, title, content) {
+export async function saveOrUpdateDocument(id, title, content, userId) {
   let document;
   const sanitizedTitle = DOMPurify.sanitize(title);
   const sanitizedContent = DOMPurify.sanitize(content);
@@ -33,6 +43,7 @@ export async function saveOrUpdateDocument(id, title, content) {
       data: {
         title: sanitizedTitle,
         content: sanitizedContent,
+        userId: userId,
       },
     });
   } else {
@@ -40,6 +51,7 @@ export async function saveOrUpdateDocument(id, title, content) {
       data: {
         title: sanitizedTitle,
         content: sanitizedContent,
+        userId: userId,
       },
     });
   }

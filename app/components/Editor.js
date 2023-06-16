@@ -8,33 +8,35 @@ export default function Editor({
   editorContent,
   setEditorContent,
   setDocumentId,
+  user,
 }) {
-  const handleChange = (event) => {
+  const contentHandler = (event) => {
     setEditorContent(event.target.value);
   };
 
   useEffect(() => {
     const fetchDocuments = async () => {
-      try {
-        const docs = await listDocuments();
-        setDocuments(docs);
-
-        if (docs && docs.length > 0) {
-          setTitle(docs[docs.length - 1].title);
-          setEditorContent(docs[docs.length - 1].content);
-          setDocumentId(docs[docs.length - 1].id);
-        } else {
-          setTitle("");
-          setEditorContent("");
-          setDocumentId(null);
+      if (user && user.user) {
+        try {
+          const docs = await listDocuments(user.user.id);
+          setDocuments(docs);
+          if (docs && docs.length > 0) {
+            setTitle(docs[docs.length - 1].title);
+            setEditorContent(docs[docs.length - 1].content);
+            setDocumentId(docs[docs.length - 1].id);
+          } else {
+            setTitle("");
+            setEditorContent("");
+            setDocumentId(null);
+          }
+        } catch (error) {
+          console.error("Error getting documents:", error);
         }
-      } catch (error) {
-        console.error("Error getting documents:", error);
       }
     };
 
     fetchDocuments();
-  }, []);
+  }, [user.user]);
 
   return (
     <div className="w-full min-h-screen">
@@ -44,7 +46,7 @@ export default function Editor({
       <textarea
         className="font-r-mono font-normal text-sm text-[#35393F] dark:text-[#C1C4CB] -tracking-normal w-full h-full resize-none dark:bg-[#151619] bg-white focus:outline-none p-4"
         value={editorContent}
-        onChange={handleChange}
+        onChange={contentHandler}
       ></textarea>
     </div>
   );
