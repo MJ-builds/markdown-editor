@@ -37,13 +37,13 @@ export default function Editor({
         MARKDOWN
       </div>
       <textarea
-        className="font-r-mono font-normal text-sm text-[#35393F] dark:text-[#C1C4CB] placeholder:italic placeholder:text-slate-600 -tracking-normal w-full h-full resize-none dark:bg-[#151619] bg-white focus:outline-none p-4"
+        className="font-r-mono font-normal text-sm text-[#35393F] dark:text-[#C1C4CB] placeholder:italic placeholder:text-slate-600 placeholder:opacity-50 dark:placeholder:opacity-100 -tracking-normal w-full h-full resize-none dark:bg-[#151619] bg-white focus:outline-none p-4"
         value={editorContent}
         onChange={contentHandler}
         placeholder={
           user && user.user
             ? "Give your document some markdown content..."
-            : "Give your document some markdown content...\n\n(remember that you'll need to sign-in to create, save, or delete)"
+            : "Go ahead and test out the editor by inputting some markdown content here...\n\n(remember that you'll need to sign-in to save, update, view, or delete)"
         }
       ></textarea>
     </div>

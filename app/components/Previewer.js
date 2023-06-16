@@ -35,7 +35,7 @@ export default function Previewer({
       </div>
       {previewToggle ? (
         <ReactMarkdown
-          className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white border-l-[1px] border-[#5A6069] p-4 w-full h-full resize-none focus:outline-none`}
+          className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white border-l-[1px] dark:border-[#5A6069] border-[#757575] p-4 w-full h-full resize-none focus:outline-none`}
         >
           {editorContent}
         </ReactMarkdown>

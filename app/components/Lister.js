@@ -30,11 +30,11 @@ export default function Lister({
           .map((document) => (
             <div
               key={document.id}
-              className="flex flex-row pt-3 items-center gap-4 rounded-[4px] bg-[#2B2D31] mb-2 p-2"
+              className="flex flex-row pt-3 items-center gap-4 rounded-[4px] dark:bg-[#2B2D31] bg-slate-200 mb-2 p-2"
             >
               <ListedDocumentIcon />
               <div className="flex flex-col">
-                <div className="font-normal font-r-reg text-[0.8125em] flex items-center text-blue-200">
+                <div className="font-normal font-r-reg text-[0.8125em] flex items-center text-blue-300 dark:text-blue-200">
                   {document.createdAt.getDate()}{" "}
                   {document.createdAt.toLocaleString("default", {
                     month: "long",
@@ -45,7 +45,7 @@ export default function Lister({
                   </div>
                 </div>
                 <div
-                  className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-blue-400 hover:cursor-pointer active:text-blue-900 transition-colors active:duration-450"
+                  className="font-normal font-r-reg text-sm tracking-[1px] text-[#757575] dark:text-white hover:text-blue-400 hover:cursor-pointer active:text-blue-900 transition-colors active:duration-450"
                   onClick={() => {
                     loadTargetDocument(
                       document.title,

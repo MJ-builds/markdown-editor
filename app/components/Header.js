@@ -55,7 +55,7 @@ export default function Header({
         const docs = await listDocuments(user.user.id);
         setDocuments(docs);
       } catch (error) {
-        console.error("Error saving document:", error);
+        console.error("Error saving document:", error.message);
       }
     } else {
       console.log("Cannot create/update - no authorised user is logged in");
@@ -78,10 +78,10 @@ export default function Header({
   }
 
   return (
-    <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4">
+    <div className="dark:bg-[#2B2D31] bg-slate-200 h-[72px] flex flex-row items-center gap-4">
       <div className="h-full ">
         <button
-          className="bg-[#35393F] hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-150 w-[72px] h-full flex items-center justify-center"
+          className="dark:bg-[#35393F] bg-[#757575] hover:bg-blue-400 active:bg-blue-900 dark:hover:bg-blue-400 dark:active:bg-blue-900 transition-colors active:duration-150 w-[72px] h-full flex items-center justify-center"
           value={menuToggle}
           onClick={menuToggleHandler}
         >
@@ -93,22 +93,24 @@ export default function Header({
         <div className="text-blue-300 pr-4 md:pl-2 md:scale-150 scale-90">
           <WrenchIcon />
         </div>
-        <div className="text-xs md:text-base">MICK</div>
+        <div className="text-xs md:text-base text-[#757575] dark:text-white">
+          MICK
+        </div>
         <div className="text-xs md:text-base text-blue-300">DOWN</div>
       </div>
-      <div className="border-r-[1px] border-[#5A6069] h-12"></div>
+      <div className="border-r-[1px] dark:border-[#5A6069] border-[#757575] h-12"></div>
       <div className="hidden md:flex flex-row justify-between w-full">
         <div className="flex flex-row items-center w-full">
-          <div className="pr-4 ">
+          <div className="pr-4 text-[#757575] dark:text-[#5A6069]">
             <TitleDocumentIcon />
           </div>
           <div className="w-full">
-            <div className="text-[#C1C4CB] text-xs font-r-reg font-light ">
+            <div className="dark:text-[#C1C4CB] text-[#757575] text-xs font-r-reg font-light ">
               Document Name
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-white text-sm placeholder:opacity-100 placeholder:italic placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent w-full focus:bg-[#35393F] focus:w-[85%] focus:rounded-[4px]"
+              className=" text-[#35393F] dark:text-white text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-full focus:bg-slate-200 focus:w-[72%] focus:rounded-[4px]"
               value={title}
               placeholder="Give your document a title..."
               onChange={(event) => setTitle(event.target.value)}
@@ -121,27 +123,30 @@ export default function Header({
           modalAction={() => openDeleteModal.close()}
         />
         <div className="flex flex-row items-center">
-          <button
-            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
-            onClick={handleSave}
-          >
-            <SaveIcon />
-          </button>
-          <div className="pr-10 flex items-center gap-4">
-            <button
-              className="flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
-              onClick={() => documentId && openDeleteModal.showModal()}
-            >
-              <DeleteIcon />
-            </button>
-          </div>
-
-          <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
+          {user?.user ? (
+            <>
+              <button
+                className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
+                onClick={handleSave}
+              >
+                <SaveIcon />
+              </button>
+              <div className="pr-10 flex items-center gap-4">
+                <button
+                  className="flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
+                  onClick={() => documentId && openDeleteModal.showModal()}
+                >
+                  <DeleteIcon />
+                </button>
+              </div>
+            </>
+          ) : null}
+          <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
           <div className="hidden md:flex justify-center items-center pr-4 pl-4 ">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
-          <div className="border-r-[1px] h-12 border-[#5A6069]"></div>
+          <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
           <div className="hidden md:block px-6 w-full">
             {!user.isSignedIn ? (
@@ -155,9 +160,9 @@ export default function Header({
               </SignInButton>
             ) : (
               <div className="flex flex-row items-center w-fit min-w-max font-commissioner">
-                <div className="flex text-sm pr-4 font-normal items-center">
+                <div className="flex text-sm pr-4 font-normal items-center text-[#757575]">
                   Welcome,{" "}
-                  <div className="text-blue-100 pl-2 font-bold">
+                  <div className="dark:text-blue-100 text-[#757575] pl-2 font-bold">
                     {" "}
                     {user.user.username}
                   </div>
