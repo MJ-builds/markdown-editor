@@ -3,8 +3,8 @@ import { listDocuments } from "../lib/actions";
 import { useEffect } from "react";
 
 import Lister from "./Lister";
-import Link from "next/link";
 import { MenuNewDocumentIcon } from "./Icons";
+import { SignInButton } from "@clerk/nextjs";
 
 export default function Menu({
   setEditorContent,
@@ -25,6 +25,12 @@ export default function Menu({
       if (user && user.user) {
         const docs = await listDocuments(user.user.id);
         setDocuments(docs);
+      } else {
+        // clean up if user has logged out. may move this useEffect elsewhere
+        setTitle("");
+        setEditorContent("");
+        setDocumentId(null);
+        setDocuments([]);
       }
     };
 
@@ -42,7 +48,7 @@ export default function Menu({
 
             <button
               onClick={createNewDocument}
-              className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 rounded-[4px]"
+              className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-450 rounded-[4px]"
             >
               <div className="flex flex-row items-center text-sm gap-2">
                 <MenuNewDocumentIcon />
@@ -73,10 +79,10 @@ export default function Menu({
             <div className="flex items-center p-4">
               <div className="text-white">
                 Please{" "}
-                <Link className="text-blue-600 font-bold" href="/sign-in">
+                <SignInButton className="text-blue-600 font-bold">
                   sign-in
-                </Link>{" "}
-                to view your documents
+                </SignInButton>{" "}
+                to view your saved documents
               </div>
             </div>
           </div>

@@ -41,39 +41,47 @@ export default function Header({
   };
 
   async function handleSave() {
-    try {
-      const savedDocument = await saveOrUpdateDocument(
-        documentId,
-        title,
-        editorContent,
-        user.user.id
-      );
-      // Update documentId with the id of the saved document
-      setDocumentId(savedDocument.id);
-      console.log("Document saved!");
-      const docs = await listDocuments(user.user.id);
-      setDocuments(docs);
-    } catch (error) {
-      console.error("Error saving document:", error);
+    if (user && user.user) {
+      try {
+        const savedDocument = await saveOrUpdateDocument(
+          documentId,
+          title,
+          editorContent,
+          user.user.id
+        );
+        // Update documentId with the id of the saved document
+        setDocumentId(savedDocument.id);
+        console.log("Document saved!");
+        const docs = await listDocuments(user.user.id);
+        setDocuments(docs);
+      } catch (error) {
+        console.error("Error saving document:", error);
+      }
+    } else {
+      console.log("Cannot create/update - no authorised user is logged in");
     }
   }
 
   async function handleDelete() {
-    await deleteDocument(documentId)
-      .then(async () => {
-        console.log("Document deleted!");
-        const docs = await listDocuments(user.user.id);
-        setDocuments(docs);
-        setLastDocumentInfo(docs, setTitle, setEditorContent, setDocumentId);
-      })
-      .catch((error) => console.error("Error deleting document:", error));
+    if (user && user.user) {
+      await deleteDocument(documentId, user.user.id)
+        .then(async () => {
+          console.log("Document deleted!");
+          const docs = await listDocuments(user.user.id);
+          setDocuments(docs);
+          setLastDocumentInfo(docs, setTitle, setEditorContent, setDocumentId);
+        })
+        .catch((error) => console.error("Error deleting document:", error));
+    } else {
+      console.log("Cannot delete - no authorised user is logged in");
+    }
   }
 
   return (
     <div className="bg-[#2B2D31] h-[72px] flex flex-row items-center gap-4">
       <div className="h-full ">
         <button
-          className="bg-[#35393F] hover:bg-blue-400 w-[72px] h-full flex items-center justify-center"
+          className="bg-[#35393F] hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-150 w-[72px] h-full flex items-center justify-center"
           value={menuToggle}
           onClick={menuToggleHandler}
         >
@@ -100,8 +108,9 @@ export default function Header({
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-white text-sm outline-none grow bg-transparent w-full focus:bg-[#35393F] focus:w-[85%] focus:rounded-[4px]"
+              className=" text-white text-sm placeholder:opacity-100 placeholder:italic placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent w-full focus:bg-[#35393F] focus:w-[85%] focus:rounded-[4px]"
               value={title}
+              placeholder="Give your document a title..."
               onChange={(event) => setTitle(event.target.value)}
             />
           </div>
@@ -113,14 +122,14 @@ export default function Header({
         />
         <div className="flex flex-row items-center">
           <button
-            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-green-600 scale-125"
+            className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
             onClick={handleSave}
           >
             <SaveIcon />
           </button>
           <div className="pr-10 flex items-center gap-4">
             <button
-              className="text-[#5A6069] hover:text-red-600 flex justify-self-center scale-125"
+              className="flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
               onClick={() => documentId && openDeleteModal.showModal()}
             >
               <DeleteIcon />

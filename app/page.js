@@ -23,7 +23,7 @@ function Home() {
   // document variables - to make more intuitive / rename
   const [documentId, setDocumentId] = useState(null);
   const [title, setTitle] = useState("");
-  const [editorContent, setEditorContent] = useState("Loading...");
+  const [editorContent, setEditorContent] = useState("");
   const [documents, setDocuments] = useState([]);
 
   const [previewToggle, setPreviewToggle] = useState(true);

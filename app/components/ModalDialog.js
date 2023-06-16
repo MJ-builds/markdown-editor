@@ -16,14 +16,14 @@ export const MenuDialog = ({ title, handleAction, modalAction }) => {
       <form method="dialog">
         <div className="flex flex-row pt-4 gap-4">
           <button
-            className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 rounded-[4px] "
+            className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-150 rounded-[4px] "
             type="submit"
             onClick={handleAction}
           >
             Confirm Delete
           </button>
           <button
-            className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 rounded-[4px]"
+            className="flex flex-row items-center justify-center h-[40px] w-full gap-2 p-2 text-white text-sm bg-blue-600 hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-150 rounded-[4px]"
             type="submit"
             onClick={modalAction}
           >

@@ -45,7 +45,7 @@ export default function Lister({
                   </div>
                 </div>
                 <div
-                  className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-blue-600 hover:cursor-pointer"
+                  className="font-normal font-r-reg text-sm tracking-[1px] text-white hover:text-blue-400 hover:cursor-pointer active:text-blue-900 transition-colors active:duration-450"
                   onClick={() => {
                     loadTargetDocument(
                       document.title,
