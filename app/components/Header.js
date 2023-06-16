@@ -20,6 +20,7 @@ import {
   WrenchIcon,
 } from "./Icons";
 import { MenuDialog } from "./ModalDialog";
+import { setLastDocumentInfo } from "../lib/documentHelpers";
 
 export default function Header({
   title,
@@ -63,16 +64,7 @@ export default function Header({
         console.log("Document deleted!");
         const docs = await listDocuments(user.user.id);
         setDocuments(docs);
-
-        if (docs && docs.length > 0) {
-          setTitle(docs[docs.length - 1].title);
-          setEditorContent(docs[docs.length - 1].content);
-          setDocumentId(docs[docs.length - 1].id);
-        } else {
-          setTitle("");
-          setEditorContent("");
-          setDocumentId(null);
-        }
+        setLastDocumentInfo(docs, setTitle, setEditorContent, setDocumentId);
       })
       .catch((error) => console.error("Error deleting document:", error));
   }

@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import Previewer from "./components/Previewer";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
+import Menu from "./components/Menu";
 
 //fonts
 import "@fontsource-variable/roboto-slab";
@@ -13,7 +14,6 @@ import "@fontsource-variable/roboto-mono";
 import "@fontsource/roboto";
 import "@fontsource/roboto/300.css";
 import "@fontsource-variable/commissioner";
-import Menu from "./components/Menu";
 
 export default function App() {
   return <Home />;

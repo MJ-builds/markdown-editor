@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { listDocuments } from "../lib/actions";
+import { setLastDocumentInfo } from "../lib/documentHelpers";
 
 export default function Editor({
   setDocuments,
@@ -20,15 +21,7 @@ export default function Editor({
         try {
           const docs = await listDocuments(user.user.id);
           setDocuments(docs);
-          if (docs && docs.length > 0) {
-            setTitle(docs[docs.length - 1].title);
-            setEditorContent(docs[docs.length - 1].content);
-            setDocumentId(docs[docs.length - 1].id);
-          } else {
-            setTitle("");
-            setEditorContent("");
-            setDocumentId(null);
-          }
+          setLastDocumentInfo(docs, setTitle, setEditorContent, setDocumentId);
         } catch (error) {
           console.error("Error getting documents:", error);
         }
