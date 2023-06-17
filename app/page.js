@@ -62,7 +62,7 @@ function Home() {
       )}
 
       <main
-        className={`${theme} text-[#C1C4CB] bg-[#2B2D31] flex flex-col font-r-reg w-full`}
+        className={`${theme} text-[#C1C4CB] bg-[#F5F5F5] dark:bg-[#2B2D31]  flex flex-col font-r-reg w-full`}
       >
         <Header
           title={title}
