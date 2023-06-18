@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ThemeDarkIcon, ThemeLightIcon } from "./Icons";
 
 export default function ThemeToggle({ toggleTheme }) {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   // handles both the toggle and the setting of theme
   const toggleThemeHandler = () => {

@@ -28,7 +28,7 @@ function Home() {
 
   const [previewToggle, setPreviewToggle] = useState(true);
   const [menuToggle, setMenuToggle] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   // may be best to move this to a user context.
   const user = useUser();
