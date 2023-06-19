@@ -111,20 +111,20 @@ export default function Header({
               </div>
               <div className="">
                 <div className="flex flex-row justify-center items-center">
-                  <div className="self-start flex dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
+                  <div className="self-center flex dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5 w-full">
                     Document Name
                   </div>
 
-                  <div className="flex flex-row">
+                  <div className="flex flex-row scale-50 md:scale-100 w-1/2 h-1/2 md:w-full md:h-full md:ml-5">
                     <button
-                      className="scale-50 md:scale-125 flex flex-row items-center justify-center gap-2 p-2 mr-0 md:mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
+                      className="flex flex-row items-center justify-center gap-2 p-2 mr-0  text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
                       onClick={handleSave}
                     >
                       <SaveIcon />
                     </button>
                     <div className="mr-4 md:pr-5 flex items-center">
                       <button
-                        className="scale-50 md:scale-125  flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
+                        className="items-center flex justify-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
                         onClick={() =>
                           documentId && openDeleteModal.showModal()
                         }
