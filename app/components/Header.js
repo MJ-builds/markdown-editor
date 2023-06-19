@@ -105,7 +105,7 @@ export default function Header({
           </div>
           <div className="">
             <div className="flex flex-row justify-center items-center">
-              <div className="dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
+              <div className="self-center flex dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
                 Document Name
               </div>
               {user?.user ? (
