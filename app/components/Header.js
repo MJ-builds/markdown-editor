@@ -76,6 +76,10 @@ export default function Header({
     }
   }
 
+  if (!user) {
+    return;
+  }
+
   return (
     <div className="dark:bg-[#2B2D31] bg-slate-200 h-[72px] flex flex-row items-center gap-4">
       <div className="h-full ">
