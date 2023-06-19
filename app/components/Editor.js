@@ -32,7 +32,7 @@ export default function Editor({
   }, [user.user]);
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen ">
       <div className="flex items-center font-r-reg font-medium h-[42px] text-[#7C8187] dark:text-[#C1C4CB] dark:bg-[#1D1F22] bg-[#F5F5F5] p-4 text-sm tracking-[2px]">
         MARKDOWN
       </div>

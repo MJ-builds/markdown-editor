@@ -14,7 +14,6 @@ import {
   MenuCloseIcon,
   MenuIcon,
   SaveIcon,
-  SigninArrowIcon,
   SigninPersonIcon,
   TitleDocumentIcon,
   WrenchIcon,

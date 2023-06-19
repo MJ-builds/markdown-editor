@@ -58,6 +58,7 @@ function Home() {
           documents={documents}
           setDocuments={setDocuments}
           user={user}
+          menuToggle={menuToggle}
         />
       )}
 
