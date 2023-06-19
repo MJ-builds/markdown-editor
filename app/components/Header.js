@@ -77,7 +77,7 @@ export default function Header({
   }
 
   return (
-    <div className="dark:bg-[#2B2D31] bg-slate-200 h-[72px] flex flex-row items-center gap-4">
+    <div className="dark:bg-[#2B2D31] bg-slate-200 h-[72px] flex flex-row items-center gap-1 md:gap-4">
       <div className="h-full ">
         <button
           className="dark:bg-[#35393F] bg-[#757575] hover:bg-blue-400 active:bg-blue-900 dark:hover:bg-blue-400 dark:active:bg-blue-900 transition-colors active:duration-150 w-[72px] h-full flex items-center justify-center"
@@ -88,7 +88,7 @@ export default function Header({
           {!menuToggle ? <MenuIcon /> : <MenuCloseIcon />}
         </button>
       </div>
-      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
+      <div className=" hidden md:flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
         <div className="text-blue-300 pr-4 md:pl-2 md:scale-150 scale-90">
           <WrenchIcon />
         </div>
@@ -97,19 +97,43 @@ export default function Header({
         </div>
         <div className="text-xs md:text-base text-blue-300">DOWN</div>
       </div>
-      <div className="border-r-[1px] dark:border-[#5A6069] border-[#757575] h-12"></div>
-      <div className="hidden md:flex flex-row justify-between w-full">
+      <div className="md:border-r-[1px] md:dark:border-[#5A6069] md:border-[#757575] h-12"></div>
+      <div className="flex flex-row justify-between w-auto md:w-full">
         <div className="flex flex-row items-center w-full">
-          <div className="pr-4 text-[#757575] dark:text-[#5A6069]">
+          <div className="md:pr-4 text-[#757575] dark:text-[#5A6069] hidden md:block">
             <TitleDocumentIcon />
           </div>
-          <div className="w-full">
-            <div className="dark:text-[#C1C4CB] text-[#757575] text-xs font-r-reg font-light ">
-              Document Name
+          <div className="">
+            <div className="flex flex-row justify-center items-center">
+              <div className="dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
+                Document Name
+              </div>
+              {user?.user ? (
+                <>
+                  <div className="flex flex-row">
+                    <button
+                      className="scale-50 md:scale-125 flex flex-row items-center justify-center gap-2 p-2 mr-0 md:mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
+                      onClick={handleSave}
+                    >
+                      <SaveIcon />
+                    </button>
+                    <div className="mr-4 md:pr-5 flex items-center">
+                      <button
+                        className="scale-50 md:scale-125 flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
+                        onClick={() =>
+                          documentId && openDeleteModal.showModal()
+                        }
+                      >
+                        <DeleteIcon />
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : null}
             </div>
             {/* this is where the actual file name goes. below: */}
             <input
-              className=" text-[#35393F] dark:text-white text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-full focus:bg-slate-200 focus:w-[72%] focus:rounded-[4px]"
+              className=" text-[#35393F] dark:text-white text-[9px] md:text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[7px] md:placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-[95%] md:w-full focus:bg-slate-200 focus:rounded-[4px]"
               value={title}
               placeholder="Give your document a title..."
               onChange={(event) => setTitle(event.target.value)}
@@ -122,32 +146,14 @@ export default function Header({
           modalAction={() => openDeleteModal.close()}
         />
         <div className="flex flex-row items-center">
-          {user?.user ? (
-            <>
-              <button
-                className="flex flex-row items-center justify-center gap-2 p-2 mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
-                onClick={handleSave}
-              >
-                <SaveIcon />
-              </button>
-              <div className="pr-10 flex items-center gap-4">
-                <button
-                  className="flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150 scale-125"
-                  onClick={() => documentId && openDeleteModal.showModal()}
-                >
-                  <DeleteIcon />
-                </button>
-              </div>
-            </>
-          ) : null}
           <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
-          <div className="hidden md:flex justify-center items-center pr-4 pl-4 ">
+          <div className="md:flex justify-center items-center scale-50 md:scale-100 md:px-4">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
           <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
-          <div className="hidden md:block px-6 w-full">
+          <div className="px-6 w-full">
             {!user.isSignedIn ? (
               <SignInButton>
                 <button className="flex items-center justify-center h-[40px] w-[80px] pl-4 pr-4 text-blue-600 bg-blue-300 hover:text-slate-200 hover:bg-blue-600 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
@@ -158,14 +164,14 @@ export default function Header({
               </SignInButton>
             ) : (
               <div className="flex flex-row items-center w-fit min-w-max font-commissioner">
-                <div className="flex text-sm pr-4 font-normal items-center text-[#757575]">
+                <div className="hidden md:flex text-sm md:pr-4 font-normal items-center text-[#757575]">
                   Welcome,{" "}
-                  <div className="dark:text-blue-100 text-[#757575] pl-2 font-bold">
+                  <div className="hidden md:block dark:text-blue-100 text-[#757575] md:pl-2 font-bold">
                     {" "}
                     {user.user.username}
                   </div>
                 </div>
-                <div className="scale-125">
+                <div className="scale-75 md:scale-125">
                   <UserButton afterSignOutUrl="/" />
                 </div>
               </div>

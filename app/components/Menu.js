@@ -48,7 +48,7 @@ export default function Menu({
 
             <button
               onClick={createNewDocument}
-              className="flex flex-row items-center justify-center h-[40px] w-[70%] md:w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-450 rounded-[4px]"
+              className="flex flex-row items-center justify-center h-[40px] w-[60%] md:w-full gap-2 p-2 mt-[10px] mr-4 text-white bg-blue-600 hover:bg-blue-400 active:bg-blue-900 transition-colors active:duration-450 rounded-[4px]"
             >
               <div className="flex flex-row items-center text-sm gap-2">
                 <MenuNewDocumentIcon />
