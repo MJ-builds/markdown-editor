@@ -151,9 +151,8 @@ export default function Header({
           <div className="hidden md:block px-6 w-full">
             {!user.isSignedIn ? (
               <SignInButton>
-                <button className="flex items-center justify-center h-[40px] w-full pl-4 pr-4 text-blue-600 bg-blue-300 hover:bg-blue-100 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
+                <button className="flex items-center justify-center h-[40px] w-[80px] pl-4 pr-4 text-blue-600 bg-blue-300 hover:text-slate-200 hover:bg-blue-600 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
                   <div className="flex flex-row text-center">
-                    <SigninArrowIcon />
                     <SigninPersonIcon />
                   </div>
                 </button>

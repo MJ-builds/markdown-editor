@@ -30,7 +30,7 @@ export default function Lister({
           .map((document) => (
             <div
               key={document.id}
-              className="flex flex-row pt-3 items-center gap-4 rounded-[4px] dark:bg-[#2B2D31] bg-slate-200 mb-2 p-2"
+              className="flex flex-row pt-3 items-center gap-4 rounded-[4px] dark:bg-[#2B2D31] bg-[#F5F5F5] mb-2 p-2"
             >
               <ListedDocumentIcon />
               <div className="flex flex-col">

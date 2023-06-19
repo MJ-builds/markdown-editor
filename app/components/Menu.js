@@ -40,7 +40,7 @@ export default function Menu({
   return (
     <>
       {user && user.user ? (
-        <div className="flex flex-col items-start justify-between w-[20%] bg-[#F5F5F5] dark:bg-[#1D1F22]  h-screen">
+        <div className="flex flex-col items-start justify-between w-[20%] bg-slate-200 dark:bg-[#1D1F22]  h-screen max-w-[300px]">
           <div className="flex flex-col justify-center w-full p-4 gap-4">
             <div className="flex font-r-reg font-medium text-sm text-[#757575] tracking-[2px] pt-3">
               MY DOCUMENTS
@@ -74,8 +74,8 @@ export default function Menu({
           </div>
         </div>
       ) : (
-        <div className="flex w-[20%] justify-center items-start dark:bg-[#1D1F22] bg-[#F5F5F5] pt-2">
-          <div className="flex w-[90%] h-[90%] dark:bg-[#1D1F22] bg-[#F5F5F5] items-center justify-center">
+        <div className="flex w-[20%] max-w-[300px] justify-center items-start dark:bg-[#1D1F22] bg-slate-200 pt-2">
+          <div className="flex w-[90%] h-[90%] dark:bg-[#1D1F22] bg-slate-200 items-center justify-center">
             <div className="flex items-center p-4 font-r-reg font-thin">
               <div className="dark:text-white text-[#7C8187]">
                 Please{" "}
