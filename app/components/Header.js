@@ -88,15 +88,17 @@ export default function Header({
           {!menuToggle ? <MenuIcon /> : <MenuCloseIcon />}
         </button>
       </div>
-      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
-        <div className="text-blue-300 pr-1 md:pr-4 md:pl-2 md:scale-150 scale-75">
-          <WrenchIcon />
+      {!user?.user && (
+        <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
+          <div className="text-blue-300 pr-1 md:pr-4 md:pl-2 md:scale-150 scale-75">
+            <WrenchIcon />
+          </div>
+          <div className="text-[10px] md:text-base text-[#757575] dark:text-white">
+            MICK
+          </div>
+          <div className="text-[10px] md:text-base text-blue-300">DOWN</div>
         </div>
-        <div className="text-[10px] md:text-base text-[#757575] dark:text-white">
-          MICK
-        </div>
-        <div className="text-[10px] md:text-base text-blue-300">DOWN</div>
-      </div>
+      )}
       {user?.user && (
         <div className="md:border-r-[1px] md:dark:border-[#5A6069] md:border-[#757575] h-12"></div>
       )}

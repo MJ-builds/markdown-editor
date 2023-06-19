@@ -41,7 +41,8 @@ export default function Previewer({
         </ReactMarkdown>
       ) : (
         <div className="flex justify-center dark:bg-[#151619] bg-white min-h-screen">
-          <div className="w-[700px]">
+          {/* amended this - may need to change back. */}
+          <div className="md:w-[700px]">
             <ReactMarkdown
               className={`${theme} markdown font-r-slab dark:bg-[#151619] bg-white p-4 w-full h-full resize-none focus:outline-none`}
             >
