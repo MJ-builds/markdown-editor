@@ -29,7 +29,7 @@ export default function Editor({
     };
 
     fetchDocuments();
-  }, [user.user, listDocuments]);
+  }, [user.user]);
 
   return (
     <div className="w-full min-h-screen ">

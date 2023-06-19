@@ -35,7 +35,7 @@ export default function Menu({
     };
 
     fetchDocuments();
-  }, [user.user, listDocuments]);
+  }, [user.user]);
 
   return (
     <>
