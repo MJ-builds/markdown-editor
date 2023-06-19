@@ -136,7 +136,7 @@ export default function Header({
                 </div>
                 {/* this is where the actual file name goes. below: */}
                 <input
-                  className=" text-[#35393F] dark:text-white text-[9px] md:text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[7px] md:placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-[95%] md:w-full focus:bg-slate-200 focus:rounded-[4px]"
+                  className=" text-[#35393F] dark:text-white text-[11px] text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[7px] md:placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-[95%] md:w-full focus:bg-slate-200 focus:rounded-[4px]"
                   value={title}
                   placeholder="Give your document a title..."
                   onChange={(event) => setTitle(event.target.value)}
