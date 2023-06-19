@@ -13,7 +13,6 @@ export default function Menu({
   documents,
   setDocuments,
   user,
-  menuToggle,
 }) {
   const createNewDocument = () => {
     setTitle("");
