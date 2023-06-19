@@ -37,10 +37,6 @@ export default function Menu({
     fetchDocuments();
   }, [user.user, listDocuments]);
 
-  if (!user) {
-    return;
-  }
-
   return (
     <>
       {user && user.user ? (
