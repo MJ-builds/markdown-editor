@@ -88,28 +88,31 @@ export default function Header({
           {!menuToggle ? <MenuIcon /> : <MenuCloseIcon />}
         </button>
       </div>
-      <div className=" hidden md:flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
-        <div className="text-blue-300 pr-4 md:pl-2 md:scale-150 scale-90">
+      <div className="flex flex-row font-bold text-white tracking-[5px] font-commissioner items-center">
+        <div className="text-blue-300 pr-1 md:pr-4 md:pl-2 md:scale-150 scale-75">
           <WrenchIcon />
         </div>
-        <div className="text-xs md:text-base text-[#757575] dark:text-white">
+        <div className="text-[10px] md:text-base text-[#757575] dark:text-white">
           MICK
         </div>
-        <div className="text-xs md:text-base text-blue-300">DOWN</div>
+        <div className="text-[10px] md:text-base text-blue-300">DOWN</div>
       </div>
-      <div className="md:border-r-[1px] md:dark:border-[#5A6069] md:border-[#757575] h-12"></div>
+      {user?.user && (
+        <div className="md:border-r-[1px] md:dark:border-[#5A6069] md:border-[#757575] h-12"></div>
+      )}
       <div className="flex flex-row justify-between w-auto md:w-full">
         <div className="flex flex-row items-center w-full">
-          <div className="md:pr-4 text-[#757575] dark:text-[#5A6069] hidden md:block">
-            <TitleDocumentIcon />
-          </div>
-          <div className="">
-            <div className="flex flex-row justify-center items-center">
-              <div className="self-center flex dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
-                Document Name
+          {user?.user ? (
+            <>
+              <div className="md:pr-4 text-[#757575] dark:text-[#5A6069] hidden md:block">
+                <TitleDocumentIcon />
               </div>
-              {user?.user ? (
-                <>
+              <div className="">
+                <div className="flex flex-row justify-center items-center">
+                  <div className="self-start flex dark:text-[#C1C4CB] text-[#757575] md:text-xs text-[9px] font-r-reg font-light md:mr-5">
+                    Document Name
+                  </div>
+
                   <div className="flex flex-row">
                     <button
                       className="scale-50 md:scale-125 flex flex-row items-center justify-center gap-2 p-2 mr-0 md:mr-6 text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
@@ -128,18 +131,19 @@ export default function Header({
                       </button>
                     </div>
                   </div>
-                </>
-              ) : null}
-            </div>
-            {/* this is where the actual file name goes. below: */}
-            <input
-              className=" text-[#35393F] dark:text-white text-[9px] md:text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[7px] md:placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-[95%] md:w-full focus:bg-slate-200 focus:rounded-[4px]"
-              value={title}
-              placeholder="Give your document a title..."
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </div>
+                </div>
+                {/* this is where the actual file name goes. below: */}
+                <input
+                  className=" text-[#35393F] dark:text-white text-[9px] md:text-sm dark:placeholder:opacity-100 placeholder:opacity-50 placeholder:italic placeholder:text-[7px] md:placeholder:text-[12px] placeholder:text-slate-600 outline-none grow bg-transparent focus:dark:bg-transparent w-[95%] md:w-full focus:bg-slate-200 focus:rounded-[4px]"
+                  value={title}
+                  placeholder="Give your document a title..."
+                  onChange={(event) => setTitle(event.target.value)}
+                />
+              </div>
+            </>
+          ) : null}
         </div>
+
         <MenuDialog
           title={title}
           handleAction={handleDelete}
@@ -156,7 +160,7 @@ export default function Header({
           <div className="px-6 w-full">
             {!user.isSignedIn ? (
               <SignInButton>
-                <button className="flex items-center justify-center h-[40px] w-[80px] pl-4 pr-4 text-blue-600 bg-blue-300 hover:text-slate-200 hover:bg-blue-600 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
+                <button className="flex items-center justify-center h-[40px] w-[65px] md:w-[80px] pl-4 pr-4  text-blue-600 bg-blue-300 hover:text-slate-200 hover:bg-blue-600 rounded-[4px] tracking-[2px] font-commissioner font-bold underline">
                   <div className="flex flex-row text-center">
                     <SigninPersonIcon />
                   </div>
