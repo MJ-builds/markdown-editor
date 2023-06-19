@@ -4,7 +4,7 @@ export const MenuDialog = ({ title, handleAction, modalAction }) => {
   return (
     <dialog
       id="openDeleteModal"
-      className="dark:bg-[#1D1F22] bg-white w-[25%] max-w-[400px] h-fit p-5 font-r-slab rounded-[4px] backdrop:bg-blue-200 backdrop:opacity-50"
+      className=" dark:bg-[#1D1F22] bg-white md:w-[25%] max-w-[400px] h-fit w-fit p-5 font-r-slab rounded-[4px] backdrop:bg-blue-200 backdrop:opacity-50"
     >
       <h3 className="text-[#35393F] dark:text-white text-2xl font-bold pb-3">
         Delete this document?

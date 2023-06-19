@@ -119,7 +119,7 @@ export default function Header({
                     </button>
                     <div className="mr-4 md:pr-5 flex items-center">
                       <button
-                        className="scale-50 md:scale-125 flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
+                        className="scale-50 md:scale-125  flex justify-self-center text-[#5A6069] hover:text-blue-600 active:text-blue-900 transition-colors active:duration-150"
                         onClick={() =>
                           documentId && openDeleteModal.showModal()
                         }
@@ -145,13 +145,13 @@ export default function Header({
           handleAction={handleDelete}
           modalAction={() => openDeleteModal.close()}
         />
-        <div className="flex flex-row items-center">
-          <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
+        <div className="flex flex-row items-center pl-5 md:pl-0">
+          <div className="md:border-r-[1px] h-12 md:dark:border-[#5A6069] md:border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
-          <div className="md:flex justify-center items-center scale-50 md:scale-100 md:px-4">
+          <div className="flex justify-center items-center scale-50 md:scale-100 w-10 h-1/2 md:w-full md:h-full md:px-4">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
-          <div className="border-r-[1px] h-12 dark:border-[#5A6069] border-[#757575]"></div>
+          <div className="md:border-r-[1px] h-12 md:dark:border-[#5A6069] md:border-[#757575]"></div>
           {/* HIDDEN AND BLOCK - for ref later */}
           <div className="px-6 w-full">
             {!user.isSignedIn ? (
@@ -171,7 +171,7 @@ export default function Header({
                     {user.user.username}
                   </div>
                 </div>
-                <div className="scale-75 md:scale-125">
+                <div className=" pl-4">
                   <UserButton afterSignOutUrl="/" />
                 </div>
               </div>
